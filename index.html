@@ -1,0 +1,718 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Jakamen × VBC Shot Book</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..800;1,6..96,400..600&family=IBM+Plex+Sans+Arabic:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>/* Layout: a screening-room shot book — dark film stock, brass for craft, each film a reel of chapters, each shot a frame + script. */
+:root{
+  --ink:#0f1216;--stock:#161a20;--frame:#1d222a;--line:#2b313a;
+  --bone:#ece5d6;--ash:#a39b8b;--brass:#c6a46c;--brass-d:#8d7247;--oxblood:#a8463f;--steel:#7e93a6;
+  --f-display:"Bodoni Moda","Didot","Bodoni 72",Georgia,serif;
+  --f-body:"IBM Plex Sans Arabic","Segoe UI",Tahoma,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+body{background:var(--ink);color:var(--bone);font-family:var(--f-body);font-size:15px;line-height:1.75}
+*{box-sizing:border-box}
+a{color:inherit}
+.page{max-width:1180px;margin:0 auto;padding-inline:clamp(16px,4vw,48px);padding-block:0 48px}
+[dir=ltr]{unicode-bidi:isolate}
+
+/* hero */
+.hero{padding-block:56px 36px;border-bottom:1px solid var(--line)}
+.kicker,.eyebrow{font-family:var(--f-mono);font-size:11px;letter-spacing:.22em;color:var(--brass);margin:0}
+.hero h1{font-family:var(--f-display);font-weight:500;font-size:clamp(44px,8vw,104px);line-height:.95;letter-spacing:-.01em;margin:18px 0 20px;text-align:left;text-wrap:balance}
+.hero h1 em{font-style:italic;color:var(--brass);font-weight:400}
+.hero-p{max-width:62ch;color:var(--ash);font-size:16px;margin:0 0 28px}
+.hero-tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.ht{position:relative;display:block;aspect-ratio:3/4;overflow:hidden;background:var(--frame);text-decoration:none}
+.ht img{width:100%;height:100%;object-fit:cover;filter:saturate(.85) contrast(1.05);transition:transform .6s ease}
+.ht:hover img{transform:scale(1.04)}
+.ht::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(10,12,15,.92))}
+.ht span{position:absolute;z-index:1;left:14px}
+.ht-n{top:10px;font-family:var(--f-display);font-size:44px;line-height:1;color:var(--bone)}
+.ht-t{bottom:30px;font-family:var(--f-display);font-size:clamp(16px,2.2vw,24px);line-height:1.1;right:14px}
+.ht-d{bottom:10px;font-family:var(--f-mono);font-size:11px;color:var(--brass);letter-spacing:.15em}
+.legend{list-style:none;padding:0;margin:22px 0 0;display:flex;flex-wrap:wrap;gap:8px 22px;color:var(--ash);font-size:13px}
+.legend li{display:flex;align-items:center;gap:8px}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;gap:4px;flex-wrap:wrap;padding-block:10px;background:rgba(15,18,22,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav a{text-decoration:none;font-size:13px;padding:6px 12px;border:1px solid transparent;color:var(--ash)}
+.nav a:hover,.nav a:focus-visible{color:var(--bone);border-color:var(--line);outline:none}
+
+/* chips */
+.chip{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;padding:3px 8px;border:1px solid var(--line);white-space:nowrap}
+.chip.real{color:var(--bone);border-color:#5a5448}
+.chip.ai{background:var(--brass);color:var(--ink);border-color:var(--brass)}
+.chip.mix{color:var(--brass);border-color:var(--brass-d)}
+.tc{font-family:var(--f-mono);font-size:12px;color:var(--brass);font-variant-numeric:tabular-nums}
+
+/* film */
+.film{padding-block:72px 24px;border-bottom:1px solid var(--line)}
+.film-head{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(16px,3vw,40px);align-items:start}
+.fh-num{font-family:var(--f-display);font-size:clamp(80px,13vw,170px);line-height:.8;color:transparent;-webkit-text-stroke:1px var(--brass-d)}
+.fh-main h2{font-family:var(--f-display);font-weight:600;font-size:clamp(34px,5.4vw,64px);line-height:1;margin:10px 0 14px;text-align:right;text-wrap:balance}
+.log{font-size:17px;max-width:62ch;margin:0 0 18px}
+.fh-facts{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:12px;margin:0}
+.fh-facts div{border-top:1px solid var(--line);padding-top:10px;min-width:0}
+.fh-facts dt{font-size:11px;color:var(--brass);letter-spacing:.06em;margin-bottom:2px}
+.fh-facts dd{margin:0;color:var(--ash);font-size:14px}
+
+/* timeline */
+.timeline{margin:34px 0 8px}
+.tl-bar{display:flex;gap:2px;height:46px}
+.seg{display:flex;flex-direction:column;justify-content:center;padding-inline:8px;min-width:0;overflow:hidden;text-decoration:none;background:var(--frame);border-top:2px solid #5a5448}
+.seg.ai{border-top-color:var(--brass);background:#221f19}
+.seg.mix{border-top-color:var(--brass-d)}
+.seg span{font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.seg em{font-style:normal;font-family:var(--f-mono);font-size:10px;color:var(--ash)}
+.seg:hover{background:#272c35}
+.tl-scale{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:10px;color:var(--ash);margin-top:4px;direction:rtl}
+
+/* chapter */
+.chapter{margin-top:48px}
+.ch-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:10px 20px;padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:18px}
+.ch-title{display:flex;align-items:baseline;gap:12px}
+.ch-i{font-family:var(--f-mono);font-size:12px;color:var(--ash)}
+.ch-title h3{font-family:var(--f-display);font-style:italic;font-weight:500;font-size:clamp(24px,3vw,34px);margin:0;line-height:1.1}
+.ch-tags{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.grade{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:var(--ash)}
+.grade i{width:14px;height:14px;display:inline-block;border:1px solid rgba(255,255,255,.12)}
+.grade i:last-of-type{margin-inline-end:4px}
+.moods{display:flex;align-items:center;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.moods-l{font-size:11px;color:var(--ash);margin-inline-end:4px}
+.mood{display:block;width:88px;height:58px;overflow:hidden;background:var(--frame)}
+.mood img{width:100%;height:100%;object-fit:cover;opacity:.85}
+
+/* shots */
+.shots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 22px}
+.shot{display:grid;grid-template-columns:minmax(0,42%) minmax(0,1fr);gap:14px;background:var(--stock);padding:10px;border:1px solid var(--line)}
+.shot-media{position:relative;min-width:0}
+.ref{display:block;aspect-ratio:4/5;overflow:hidden;background:var(--frame)}
+.ref img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.ref:hover img{transform:scale(1.05)}
+.ref:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+.shot-n{position:absolute;top:0;right:0;background:var(--ink);font-family:var(--f-mono);font-size:12px;padding:3px 7px;color:var(--brass)}
+.endcard{aspect-ratio:4/5;background:#182638;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:12px;border:1px solid #2b3c52}
+.ec-k{font-family:var(--f-mono);font-size:10px;letter-spacing:.2em;color:var(--brass)}
+.ec-t{font-family:var(--f-display);font-size:clamp(16px,2vw,22px);line-height:1.15;color:var(--bone)}
+.ec-c{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.15em;background:var(--oxblood);padding:4px 8px;color:var(--bone)}
+.shot-body{min-width:0;display:flex;flex-direction:column;gap:8px;padding-block:2px}
+.shot-meta{display:flex;flex-direction:column;gap:2px}
+.frame{font-size:12.5px;color:var(--ash)}
+.action{margin:0;font-size:14.5px;line-height:1.7}
+.sound{margin:0;font-size:12.5px;color:var(--ash);display:flex;gap:8px}
+.sound span,.vo span{font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;color:var(--brass-d);padding-top:3px;flex:none}
+.vo{margin:0;display:flex;gap:8px;border-inline-start:2px solid var(--brass);padding-inline-start:10px}
+.vo q{font-family:var(--f-display);font-style:italic;font-size:15.5px;line-height:1.4;quotes:"“" "”";text-align:left}
+.tov{margin:auto 0 0;font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;color:var(--oxblood);font-weight:500;text-align:left}
+.tov::before{content:"TOV  ";color:var(--ash)}
+.hud{margin:auto 0 0;align-self:flex-start;font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;color:var(--brass);border:1px solid var(--brass-d);padding:3px 8px;background:#14181e}
+
+/* notes */
+.notes{margin-top:44px;background:var(--stock);border:1px solid var(--line);padding:22px clamp(16px,3vw,28px)}
+.notes h4{margin:0 0 12px;font-size:13px;letter-spacing:.06em;color:var(--brass)}
+.notes ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 28px}
+.notes li{display:flex;flex-direction:column;gap:2px;min-width:0}
+.notes b{font-size:14px}
+.notes span{font-size:13.5px;color:var(--ash)}
+
+/* claims */
+.claims{padding-block:64px 24px}
+.claims h2{font-family:var(--f-display);font-weight:500;font-size:clamp(28px,4vw,44px);margin:0 0 20px}
+.claims ol{margin:0;padding:0;list-style:none;counter-reset:c;display:grid;gap:0}
+.claims li{counter-increment:c;display:grid;grid-template-columns:2.5em minmax(0,14em) minmax(0,1fr);gap:12px;padding-block:14px;border-top:1px solid var(--line)}
+.claims li::before{content:counter(c,decimal-leading-zero);font-family:var(--f-mono);font-size:12px;color:var(--brass);padding-top:3px}
+.claims span{color:var(--ash)}
+.foot{border-top:1px solid var(--line);padding-block:24px 0;font-size:12.5px;color:var(--ash)}
+.foot p:first-child{font-family:var(--f-mono);letter-spacing:.2em;font-size:11px;color:var(--brass);text-align:right}
+
+@media (max-width:900px){.shots{grid-template-columns:minmax(0,1fr)}.notes ul{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:560px){
+  .hero-tiles{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.ht-n{font-size:28px}.ht-t{font-size:12px;bottom:24px;left:8px;right:8px}.ht span{left:8px}
+  .film-head{grid-template-columns:minmax(0,1fr)}.fh-num{font-size:72px}
+  .fh-facts{grid-template-columns:minmax(0,1fr)}
+  .shot{grid-template-columns:minmax(0,38%) minmax(0,1fr);gap:10px;padding:8px}
+  .seg span{display:none}.tl-bar{height:28px}
+  .claims li{grid-template-columns:2em minmax(0,1fr)}.claims li span{grid-column:2}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.chapter,.film,.claims{scroll-margin-top:64px}
+</style>
+</head>
+<body style="margin:0">
+
+<div class="page" dir="rtl" lang="ar">
+<header class="hero">
+  <p class="kicker" dir="ltr">JAKAMEN × VITALE BARBERIS CANONICO · SHOT BOOK</p>
+  <h1 dir="ltr">Three films.<br><em>One standard.</em></h1>
+  <p class="hero-p">Shot List كامل للتلات أفلام، لقطة بلقطة، ومع كل لقطة ريفرنس بصري من Pinterest. الملف ده للمخرج والمونتير ومنفّذ الـ AI.</p>
+  <div class="hero-tiles"><a class="ht" href="#journey"><img src="refs/f1a3a-4.jpg" alt=""><span class="ht-n" dir="ltr">01</span><span class="ht-t" dir="ltr">THE JOURNEY</span><span class="ht-d" dir="ltr">50s</span></a><a class="ht" href="#adapt"><img src="refs/f2a3b-2.jpg" alt=""><span class="ht-n" dir="ltr">02</span><span class="ht-t" dir="ltr">ADAPT TO YOUR DAY</span><span class="ht-d" dir="ltr">40s</span></a><a class="ht" href="#seat"><img src="refs/f3a1-3.jpg" alt=""><span class="ht-n" dir="ltr">03</span><span class="ht-t" dir="ltr">THE SEAT</span><span class="ht-d" dir="ltr">35s</span></a></div>
+  <ul class="legend"><li><span class="chip real">تصوير حقيقي</span>لقطات البدلة الفعلية</li><li><span class="chip ai">AI</span>لقطات الرحلة والخامة</li><li><span class="tc">0:00–0:03</span>التايم كود</li></ul>
+</header>
+<nav class="nav"><a href="#journey" dir="ltr">01 The Journey</a><a href="#adapt" dir="ltr">02 Adapt</a><a href="#seat" dir="ltr">03 The Seat</a><a href="#claims">الادعاءات</a></nav>
+<section class="film" id="journey">
+  <header class="film-head">
+    <div class="fh-num" dir="ltr">01</div>
+    <div class="fh-main">
+      <p class="eyebrow" dir="ltr">50 SEC · 21 SHOTS · 7 CHAPTERS</p>
+      <h2 dir="ltr">THE JOURNEY</h2>
+      <p class="log">بنوقف لحظة القياس في فرع جاكامين، ونرجع بالزمن ورا عشان نشوف رحلة الخامة، وبعدين نرجع لنفس اللحظة بمعنى جديد.</p>
+      <dl class="fh-facts"><div><dt>الدور</dt><dd>بناء القيمة والثقة</dd></div><div><dt>الأداة البصرية</dt><dd>البدلة نفسها بتتفك: البدلة تبقى قماش، والقماش يبقى خيط، والخيط يبقى صوف خام، والصوف يرجع على ضهر الخروف.</dd></div></dl>
+    </div>
+  </header>
+  <div class="timeline" aria-label="تقسيم الفيلم بالثواني"><div class="tl-bar"><a href="#journey-c0" class="seg real" style="flex:6" title="The Fitting"><span>The Fitting</span><em dir="ltr">6s</em></a><a href="#journey-c1" class="seg ai" style="flex:3" title="The Unravel"><span>The Unravel</span><em dir="ltr">3s</em></a><a href="#journey-c2" class="seg ai" style="flex:11" title="Australia"><span>Australia</span><em dir="ltr">11s</em></a><a href="#journey-c3" class="seg ai" style="flex:3" title="The Flight"><span>The Flight</span><em dir="ltr">3s</em></a><a href="#journey-c4" class="seg ai" style="flex:10" title="Biella"><span>Biella</span><em dir="ltr">10s</em></a><a href="#journey-c5" class="seg ai" style="flex:7" title="Turkey"><span>Turkey</span><em dir="ltr">7s</em></a><a href="#journey-c6" class="seg real" style="flex:10" title="The Return"><span>The Return</span><em dir="ltr">10s</em></a></div><div class="tl-scale" dir="ltr"><span>0s</span><span>50s</span></div></div>
+  <section class="chapter" id="journey-c0">
+  <header class="ch-head">
+    <div class="ch-title"><span class="ch-i" dir="ltr">01.1</span><h3 dir="ltr">The Fitting</h3></div>
+    <div class="ch-tags"><span class="tc" dir="ltr">0:00–0:06</span><span class="chip real">تصوير حقيقي</span>
+    <span class="grade" title="الجريد اللوني"><i style="background:#8a8478"></i><i style="background:#2b2a27"></i>محايد</span></div>
+  </header>
+  
+  <div class="shots"><article class="shot">
+  <div class="shot-media"><a class="ref" href="https://www.pinterest.com/pin/578994095882800648/" target="_blank" rel="noopener"><img src="refs/f1a1-2.jpg" alt="ريفرنس لقطة 1" loading="lazy"></a><span class="shot-n">01</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:00–0:02</span><span class="frame">Medium Wide · Push-in بطيء</span></div>
+    <p class="action">الراجل قدام المراية في فرع جاكامين، والترزي بيظبط الكُم.</p>
+    <p class="sound"><span>صوت</span>صوت الفرع + موسيقى هادية</p>
+    
+  </div>
+</article><article class="shot">
+  <div class="shot-media"><a class="ref" href="https://www.pinterest.com/pin/38421403068829000/" target="_blank" rel="noopener"><img src="refs/f1a1-9.jpg" alt="ريفرنس لقطة 2" loading="lazy"></a><span class="shot-n">02</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:02–0:04</span><span class="frame">CU · ثابت</span></div>
+    <p class="action">إيد الترزي بتفرد الياقة، وانعكاس الراجل في المراية.</p>
+    <p class="sound"><span>صوت</span>قصّة مقص، خطوات</p>
+    
+  </div>
+</article><article class="shot">
+  <div class="shot-media"><a class="ref" href="https://www.pinterest.com/pin/4605071493286999296/" target="_blank" rel="noopener"><img src="refs/f1a1-7.jpg" alt="ريفرنس لقطة 3" loading="lazy"></a><span class="shot-n">03</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:04–0:06</span><span class="frame">Freeze Frame على نفس كادر 1</span></div>
+    <p class="action">الصورة تتجمد والألوان تبهت شوية.</p>
+    <p class="sound"><span>صوت</span>صمت تام</p>
+    <p class="vo"><span>VO</span><q dir="ltr">The story didn’t begin here.</q></p>
+  </div>
+</article></div>
+</section><section class="chapter" id="journey-c1">
+  <header class="ch-head">
+    <div class="ch-title"><span class="ch-i" dir="ltr">01.2</span><h3 dir="ltr">The Unravel</h3></div>
+    <div class="ch-tags"><span class="tc" dir="ltr">0:06–0:09</span><span class="chip ai">AI</span>
+    <span class="grade" title="الجريد اللوني"><i style="background:#7a2f2c"></i><i style="background:#1a1414"></i>انتقال</span></div>
+  </header>
+  <div class="moods"><span class="moods-l">مود إضافي</span><a class="mood" href="https://www.pinterest.com/pin/1829656094799875/" target="_blank" rel="noopener"><img src="refs/f1a2-5.jpg" alt="ريفرنس مود" loading="lazy"></a></div>
+  <div class="shots"><article class="shot">
+  <div class="shot-media"><a class="ref" href="https://www.pinterest.com/pin/81205599526378622/" target="_blank" rel="noopener"><img src="refs/f1a2-2.jpg" alt="ريفرنس لقطة 4" loading="lazy"></a><span class="shot-n">04</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:06–0:09</span><span class="frame">Macro على الياقة المتجمدة</span></div>
+    <p class="action">خيط يطلع من الياقة، فالبدلة تتفك لقماش، ثم لخيوط، ثم لألياف صوف خام تطير.</p>
+    <p class="sound"><span>صوت</span>Reverse Whoosh + صوت خيوط بتتسحب</p>
+    
+  </div>
+</article></div>
+</section><section class="chapter" id="journey-c2">
+  <header class="ch-head">
+    <div class="ch-title"><span class="ch-i" dir="ltr">01.3</span><h3 dir="ltr">Australia</h3></div>
+    <div class="ch-tags"><span class="tc" dir="ltr">0:09–0:20</span><span class="chip ai">AI</span>
+    <span class="grade" title="الجريد اللوني"><i style="background:#d39a4a"></i><i style="background:#4a3a22"></i>دافي ذهبي</span></div>
+  </header>
+  <div class="moods"><span class="moods-l">مود إضافي</span><a class="mood" href="https://www.pinterest.com/pin/19984792093598877/" target="_blank" rel="noopener"><img src="refs/f1a3b-1.jpg" alt="ريفرنس مود" loading="lazy"></a><a class="mood" href="https://www.pinterest.com/pin/45810121243924821/" target="_blank" rel="noopener"><img src="refs/f1a3c-0.jpg" alt="ريفرنس مود" loading="lazy"></a></div>
+  <div class="shots"><article class="shot">
+  <div class="shot-media"><a class="ref" href="https://www.pinterest.com/pin/426645764722095176/" target="_blank" rel="noopener"><img src="refs/f1a3a-4.jpg" alt="ريفرنس لقطة 5" loading="lazy"></a><span class="shot-n">05</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:09–0:12</span><span class="frame">Aerial · Drone فوق التلال وقت الفجر</span></div>
+    <p class="action">الألياف الطايرة تنزل على قطيع ميرينو.</p>
+    <p class="sound"><span>صوت</span>رياح، أصوات خرفان</p>
+    <p class="vo"><span>VO</span><q dir="ltr">It began thousands of miles away, in the hills of Australia.</q></p>
+  </div>
+</article><article class="shot">
+  <div class="shot-media"><a class="ref" href="https://www.pinterest.com/pin/748793875591253217/" target="_blank" rel="noopener"><img src="refs/f1a3a-0.jpg" alt="ريفرنس لقطة 6" loading="lazy"></a><span class="shot-n">06</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:12–0:14</span><span class="frame">Low Angle · Golden Hour</span></div>
+    <p class="action">راعي ماشي وسط القطيع وبيمرر إيده على الصوف بهدوء.</p>
+    <p class="sound"><span>صوت</span>خطوات على العشب</p>
+    
+  </div>
+</article><article class="shot">
+  <div class="shot-media"><a class="ref" href="https://www.pinterest.com/pin/431501208066195457/" target="_blank" rel="noopener"><img src="refs/f1a3b-11.jpg" alt="ريفرنس لقطة 7" loading="lazy"></a><span class="shot-n">07</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:14–0:16</span><span class="frame">CU · Slow Motion</span></div>
+    <p class="action">الجز: الفروة بتنزل قطعة واحدة بحركة هادية ومحترمة.</p>
+    <p class="sound"><span>صوت</span>صوت ماكينة جز مكتوم</p>
+    
+  </div>
+</article><article class="shot">
+  <div class="shot-media"><a class="ref" href="https://www.pinterest.com/pin/601019512818045594/" target="_blank" rel="noopener"><img src="refs/f1a3c-3.jpg" alt="ريفرنس لقطة 8" loading="lazy"></a><span class="shot-n">08</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:16–0:18</span><span class="frame">Top Shot</span></div>
+    <p class="action">طاولة فرز: الفروة تتفرد والخبير بيفصل الأجزاء.</p>
+    
+    <p class="vo"><span>VO</span><q dir="ltr">Where the finest fiber is chosen by hand.</q></p>
+  </div>
+</article><article class="shot">
+  <div class="shot-media"><a class="ref" href="https://www.pinterest.com/pin/1044553707326081457/" target="_blank" rel="noopener"><img src="refs/f1a3c-6.jpg" alt="ريفرنس لقطة 9" loading="lazy"></a><span class="shot-n">09</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:18–0:20</span><span class="frame">Macro · Backlight</span></div>
+    <p class="action">شعرة صوف واحدة قدام النور.</p>
+    
+    <p class="vo"><span>VO</span><q dir="ltr">Because the right fiber is never an accident.</q></p><p class="tov" dir="ltr">EVERY GREAT SUIT HAS AN ORIGIN.</p>
+  </div>
+</article></div>
+</section><section class="chapter" id="journey-c3">
+  <header class="ch-head">
+    <div class="ch-title"><span class="ch-i" dir="ltr">01.4</span><h3 dir="ltr">The Flight</h3></div>
+    <div class="ch-tags"><span class="tc" dir="ltr">0:20–0:23</span><span class="chip ai">AI</span>
+    <span class="grade" title="الجريد اللوني"><i style="background:#e0763a"></i><i style="background:#3a2016"></i>غروب</span></div>
+  </header>
+  
+  <div class="shots"><article class="shot">
+  <div class="shot-media"><a class="ref" href="https://www.pinterest.com/pin/844493676900670/" target="_blank" rel="noopener"><img src="refs/f1a3c-5.jpg" alt="ريفرنس لقطة 10" loading="lazy"></a><span class="shot-n">10</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:20–0:21.5</span><span class="frame">CU</span></div>
+    <p class="action">بالة صوف بتتقفل وعليها ختم شحن.</p>
+    <p class="sound"><span>صوت</span>ختم، ربط حبال</p>
+    
+  </div>
+</article><article class="shot">
+  <div class="shot-media"><a class="ref" href="https://www.pinterest.com/pin/685954587042473317/" target="_blank" rel="noopener"><img src="refs/f1a4-7.jpg" alt="ريفرنس لقطة 11" loading="lazy"></a><span class="shot-n">11</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:21.5–0:23</span><span class="frame">Wide · وقت الغروب</span></div>
+    <p class="action">طيارة بتقوم، ثم Overlay لخط ذهبي على الخريطة من أستراليا لإيطاليا.</p>
+    <p class="sound"><span>صوت</span>محرك طيارة يتحول لموسيقى</p>
+    
+  </div>
+</article></div>
+</section><section class="chapter" id="journey-c4">
+  <header class="ch-head">
+    <div class="ch-title"><span class="ch-i" dir="ltr">01.5</span><h3 dir="ltr">Biella</h3></div>
+    <div class="ch-tags"><span class="tc" dir="ltr">0:23–0:33</span><span class="chip ai">AI</span>
+    <span class="grade" title="الجريد اللوني"><i style="background:#9fb0b8"></i><i style="background:#2a3238"></i>بارد وضبابي</span></div>
+  </header>
+  
+  <div class="shots"><article class="shot">
+  <div class="shot-media"><a class="ref" href="https://www.pinterest.com/pin/198439927327382135/" target="_blank" rel="noopener"><img src="refs/f1a5a-2.jpg" alt="ريفرنس لقطة 12" loading="lazy"></a><span class="shot-n">12</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:23–0:25</span><span class="frame">Establishing · ضباب الصبح</span></div>
+    <p class="action">Biella عند سفح جبال الألب.</p>
+    <p class="sound"><span>صوت</span>أجراس بعيدة</p>
+    <p class="vo"><span>VO</span><q dir="ltr">To Biella, Italy.</q></p>
+  </div>
+</article><article class="shot">
+  <div class="shot-media"><a class="ref" href="https://www.pinterest.com/pin/38632509302213706/" target="_blank" rel="noopener"><img src="refs/f1a5c-0.jpg" alt="ريفرنس لقطة 13" loading="lazy"></a><span class="shot-n">13</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:25–0:28</span><span class="frame">Tracking بطيء</span></div>
+    <p class="action">بكر غزل بتلف.</p>
+    
+    <p class="vo"><span>VO</span><q dir="ltr">Where Vitale Barberis Canonico has woven cloth since 1663.</q></p>
+  </div>
+</article><article class="shot">
+  <div class="shot-media"><a class="ref" href="https://www.pinterest.com/pin/562738915962823742/" target="_blank" rel="noopener"><img src="refs/f1a5a-9.jpg" alt="ريفرنس لقطة 14" loading="lazy"></a><span class="shot-n">14</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:28–0:31</span><span class="frame">Macro</span></div>
+    <p class="action">خيوط النول والنقشة بتتكون.</p>
+    <p class="sound"><span>صوت</span>إيقاع النول متزامن مع الموسيقى</p>
+    
+  </div>
+</article><article class="shot">
+  <div class="shot-media"><a class="ref" href="https://www.pinterest.com/pin/4603945574353947712/" target="_blank" rel="noopener"><img src="refs/f1a5a-0.jpg" alt="ريفرنس لقطة 15" loading="lazy"></a><span class="shot-n">15</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:31–0:33</span><span class="frame">Medium</span></div>
+    <p class="action">فاحص بيمرر إيده على القماش فوق طاولة إضاءة.</p>
+    
+    <p class="tov" dir="ltr">VITALE BARBERIS CANONICO · EST. 1663</p>
+  </div>
+</article></div>
+</section><section class="chapter" id="journey-c5">
+  <header class="ch-head">
+    <div class="ch-title"><span class="ch-i" dir="ltr">01.6</span><h3 dir="ltr">Turkey</h3></div>
+    <div class="ch-tags"><span class="tc" dir="ltr">0:33–0:40</span><span class="chip ai">AI</span>
+    <span class="grade" title="الجريد اللوني"><i style="background:#c98a4b"></i><i style="background:#2e241a"></i>Tungsten ورشة</span></div>
+  </header>
+  <div class="moods"><span class="moods-l">مود إضافي</span><a class="mood" href="https://www.pinterest.com/pin/17521886048615535/" target="_blank" rel="noopener"><img src="refs/f1a6a-9.jpg" alt="ريفرنس مود" loading="lazy"></a></div>
+  <div class="shots"><article class="shot">
+  <div class="shot-media"><a class="ref" href="https://www.pinterest.com/pin/54324739252095219/" target="_blank" rel="noopener"><img src="refs/f1a6a-0.jpg" alt="ريفرنس لقطة 16" loading="lazy"></a><span class="shot-n">16</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:33–0:35</span><span class="frame">Top Shot</span></div>
+    <p class="action">علامات طباشير، ثم مقص بيقص القماش.</p>
+    
+    <p class="vo"><span>VO</span><q dir="ltr">Then, in skilled hands, the cloth becomes a suit.</q></p>
+  </div>
+</article><article class="shot">
+  <div class="shot-media"><a class="ref" href="https://www.pinterest.com/pin/56787645305834129/" target="_blank" rel="noopener"><img src="refs/f1a6b-0.jpg" alt="ريفرنس لقطة 17" loading="lazy"></a><span class="shot-n">17</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:35–0:37</span><span class="frame">CU</span></div>
+    <p class="action">إبرة بتخيط الياقة والـ Canvas.</p>
+    <p class="sound"><span>صوت</span>صوت الإبرة</p>
+    
+  </div>
+</article><article class="shot">
+  <div class="shot-media"><a class="ref" href="https://www.pinterest.com/pin/48061921671789060/" target="_blank" rel="noopener"><img src="refs/f1a6b-9.jpg" alt="ريفرنس لقطة 18" loading="lazy"></a><span class="shot-n">18</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:37–0:40</span><span class="frame">Medium ثم Match Transition</span></div>
+    <p class="action">دفعة بخار كي على جاكيت على المانيكان، والمانيكان يلف ويتحول لنفس مكان الراجل قدام المراية.</p>
+    <p class="sound"><span>صوت</span>بخار، ثم صوت الفرع يرجع تدريجيًا</p>
+    <p class="tov" dir="ltr">FROM CLOTH TO FORM.</p>
+  </div>
+</article></div>
+</section><section class="chapter" id="journey-c6">
+  <header class="ch-head">
+    <div class="ch-title"><span class="ch-i" dir="ltr">01.7</span><h3 dir="ltr">The Return</h3></div>
+    <div class="ch-tags"><span class="tc" dir="ltr">0:40–0:50</span><span class="chip real">تصوير حقيقي</span>
+    <span class="grade" title="الجريد اللوني"><i style="background:#8a8478"></i><i style="background:#2b2a27"></i>محايد</span></div>
+  </header>
+  
+  <div class="shots"><article class="shot">
+  <div class="shot-media"><a class="ref" href="https://www.pinterest.com/pin/9992430418426328/" target="_blank" rel="noopener"><img src="refs/f1a7-3.jpg" alt="ريفرنس لقطة 19" loading="lazy"></a><span class="shot-n">19</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:40–0:43</span><span class="frame">نفس كادر 1 بالظبط</span></div>
+    <p class="action">الـ Freeze يتفك، والحركة والصوت يكملوا من مكان ما وقفوا.</p>
+    <p class="sound"><span>صوت</span>صوت الفرع</p>
+    
+  </div>
+</article><article class="shot">
+  <div class="shot-media"><a class="ref" href="https://www.pinterest.com/pin/314407617710549319/" target="_blank" rel="noopener"><img src="refs/f1a7-6.jpg" alt="ريفرنس لقطة 20" loading="lazy"></a><span class="shot-n">20</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:43–0:46</span><span class="frame">CU ثم Medium</span></div>
+    <p class="action">يقفل الزرار، يبص في المراية، ابتسامة خفيفة، ثم لقطة قريبة للقماش على الكتف.</p>
+    
+    <p class="vo"><span>VO</span><q dir="ltr">In this suit, every thread is a work of art.</q></p>
+  </div>
+</article><article class="shot">
+  <div class="shot-media"><div class="endcard"><span class="ec-k">JAKAMEN × VBC</span><span class="ec-t">THE STANDARD, MADE.</span><span class="ec-c">DISCOVER THE SUIT</span></div><span class="shot-n">21</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:46–0:50</span><span class="frame">Hero Shot ثم End Card</span></div>
+    <p class="action">البدلة كاملة، ثم شعارا جاكامين وVBC.</p>
+    
+    <p class="vo"><span>VO</span><q dir="ltr">Jakamen. With Vitale Barberis Canonico.</q></p>
+  </div>
+</article></div>
+</section>
+  <aside class="notes"><h4>ملاحظات التنفيذ</h4><ul><li><b>تصوير حقيقي إجباري</b><span>لقطات 1–3 و19–21 لازم تتصور حقيقي. الـ AI مش هيطلع البدلة الفعلية بدقة، والـ Match Cut محتاج كادر مقفول بالملّي: ترايبود ثابت، ونفس العدسة والإضاءة.</span></li><li><b>قلّل الوشوش والصوابع</b><span>في لقطات الـ AI خلي البطل هو الخامة والحركة، والناس من مسافة متوسطة أو من ضهرهم. الإيدين الكلوز حركتها تبقى بطيئة.</span></li><li><b>Grain موحد</b><span>جريد لوني لكل فصل، ونفس الـ Grain على كل اللقطات علشان الـ AI يندمج مع التصوير الحقيقي.</span></li><li><b>الـ VO حوالي 50 كلمة</b><span>إلقاء هادي من غير زحمة، والـ TOV مش بيكرر أي جملة من الـ VO.</span></li><li><b>ادعاء أستراليا</b><span>يتأكد من VBC إن صوف القماش ده بالذات من أستراليا. لو مفيش رد، نشيل اسم البلد ونخلي المشهد «مراعي الميرينو».</span></li></ul></aside>
+</section><section class="film" id="adapt">
+  <header class="film-head">
+    <div class="fh-num" dir="ltr">02</div>
+    <div class="fh-main">
+      <p class="eyebrow" dir="ltr">40 SEC · 13 SHOTS · 5 CHAPTERS</p>
+      <h2 dir="ltr">ADAPT TO YOUR DAY</h2>
+      <p class="log">يوم واحد بين العربية والشارع والاجتماع والمصنع. الناس حواليه بيتأثروا بالجو، وهو ثابت ومتماسك طول الوقت.</p>
+      <dl class="fh-facts"><div><dt>الدور</dt><dd>ربط الخامة بفوائد ملموسة</dd></div><div><dt>الأداة البصرية</dt><dd>HUD على الشاشة يقيس حرارة المكان، مش الجسم. ده اللي بيدي إحساس الـ AI من غير أي ادعاء غلط.</dd></div></dl>
+    </div>
+  </header>
+  <div class="timeline" aria-label="تقسيم الفيلم بالثواني"><div class="tl-bar"><a href="#adapt-c0" class="seg real" style="flex:5" title="The Hook"><span>The Hook</span><em dir="ltr">5s</em></a><a href="#adapt-c1" class="seg ai" style="flex:5" title="Before AI"><span>Before AI</span><em dir="ltr">5s</em></a><a href="#adapt-c2" class="seg real" style="flex:16" title="The Day"><span>The Day</span><em dir="ltr">16s</em></a><a href="#adapt-c3" class="seg mix" style="flex:5" title="The Fabric"><span>The Fabric</span><em dir="ltr">5s</em></a><a href="#adapt-c4" class="seg real" style="flex:9" title="The Payoff"><span>The Payoff</span><em dir="ltr">9s</em></a></div><div class="tl-scale" dir="ltr"><span>0s</span><span>40s</span></div></div>
+  <section class="chapter" id="adapt-c0">
+  <header class="ch-head">
+    <div class="ch-title"><span class="ch-i" dir="ltr">02.1</span><h3 dir="ltr">The Hook</h3></div>
+    <div class="ch-tags"><span class="tc" dir="ltr">0:00–0:05</span><span class="chip real">تصوير حقيقي</span>
+    <span class="grade" title="الجريد اللوني"><i style="background:#b9b2a4"></i><i style="background:#2f2d29"></i>صبح محايد</span></div>
+  </header>
+  
+  <div class="shots"><article class="shot">
+  <div class="shot-media"><a class="ref" href="https://www.pinterest.com/pin/5629568277130784/" target="_blank" rel="noopener"><img src="refs/f2a1-2.jpg" alt="ريفرنس لقطة 1" loading="lazy"></a><span class="shot-n">01</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:00–0:02</span><span class="frame">CU · Top Shot</span></div>
+    <p class="action">موبايل فاتح على تطبيق الطقس مكتوب فيه 38°، وصباعه يقفل الشاشة.</p>
+    <p class="sound"><span>صوت</span>نوتيفيكيشن</p>
+    <p class="vo"><span>VO</span><q dir="ltr">You don’t need to check the weather before your meeting.</q></p>
+  </div>
+</article><article class="shot">
+  <div class="shot-media"><a class="ref" href="https://www.pinterest.com/pin/980377412607605245/" target="_blank" rel="noopener"><img src="refs/f2a1-8.jpg" alt="ريفرنس لقطة 2" loading="lazy"></a><span class="shot-n">02</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:02–0:05</span><span class="frame">Medium · Tracking</span></div>
+    <p class="action">يحط الموبايل في جيبه، يظبط الكُم، ويخرج من الباب.</p>
+    <p class="sound"><span>صوت</span>خطوات</p>
+    <p class="vo"><span>VO</span><q dir="ltr">Your suit was made for this.</q></p>
+  </div>
+</article></div>
+</section><section class="chapter" id="adapt-c1">
+  <header class="ch-head">
+    <div class="ch-title"><span class="ch-i" dir="ltr">02.2</span><h3 dir="ltr">Before AI</h3></div>
+    <div class="ch-tags"><span class="tc" dir="ltr">0:05–0:10</span><span class="chip ai">AI</span>
+    <span class="grade" title="الجريد اللوني"><i style="background:#e8e0cf"></i><i style="background:#3b3a35"></i>Macro نضيف</span></div>
+  </header>
+  
+  <div class="shots"><article class="shot">
+  <div class="shot-media"><a class="ref" href="https://www.pinterest.com/pin/1829656094799916/" target="_blank" rel="noopener"><img src="refs/f2a2-0.jpg" alt="ريفرنس لقطة 3" loading="lazy"></a><span class="shot-n">03</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:05–0:07</span><span class="frame">Macro</span></div>
+    <p class="action">شعرة صوف وعليها خطوط Scan رقمية خفيفة.</p>
+    <p class="sound"><span>صوت</span>Digital Hum</p>
+    <p class="vo"><span>VO</span><q dir="ltr">Long before AI learned to adapt…</q></p>
+  </div>
+</article><article class="shot">
+  <div class="shot-media"><a class="ref" href="https://www.pinterest.com/pin/45810121243924839/" target="_blank" rel="noopener"><img src="refs/f2a2-1.jpg" alt="ريفرنس لقطة 4" loading="lazy"></a><span class="shot-n">04</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:07–0:10</span><span class="frame">Macro ثم Pull-out</span></div>
+    <p class="action">الشعرة تتحول لنسيج، والكاميرا ترجع لورا لحد ما يبان إنه قماش كتف البدلة.</p>
+    
+    <p class="vo"><span>VO</span><q dir="ltr">…nature had already mastered it.</q></p><p class="tov" dir="ltr">BEFORE AI, NATURE KNEW.</p>
+  </div>
+</article></div>
+</section><section class="chapter" id="adapt-c2">
+  <header class="ch-head">
+    <div class="ch-title"><span class="ch-i" dir="ltr">02.3</span><h3 dir="ltr">The Day</h3></div>
+    <div class="ch-tags"><span class="tc" dir="ltr">0:10–0:26</span><span class="chip real">تصوير حقيقي</span>
+    <span class="grade" title="الجريد اللوني"><i style="background:#d9a35a"></i><i style="background:#25303a"></i>حر بارد بالتبادل</span></div>
+  </header>
+  <div class="moods"><span class="moods-l">مود إضافي</span><a class="mood" href="https://www.pinterest.com/pin/88664686410573164/" target="_blank" rel="noopener"><img src="refs/f2a3b-0.jpg" alt="ريفرنس مود" loading="lazy"></a><a class="mood" href="https://www.pinterest.com/pin/658018195598293932/" target="_blank" rel="noopener"><img src="refs/f2a3c-6.jpg" alt="ريفرنس مود" loading="lazy"></a></div>
+  <div class="shots"><article class="shot">
+  <div class="shot-media"><a class="ref" href="https://www.pinterest.com/pin/1040401951387063708/" target="_blank" rel="noopener"><img src="refs/f2a3a-2.jpg" alt="ريفرنس لقطة 5" loading="lazy"></a><span class="shot-n">05</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:10–0:13</span><span class="frame">CU على فتحة التكييف ثم Medium</span></div>
+    <p class="action">جوه العربية بيراجع ورق، والجو بارد.</p>
+    <p class="sound"><span>صوت</span>صوت تكييف</p>
+    <p class="hud" dir="ltr">CAR · 18°C</p>
+  </div>
+</article><article class="shot">
+  <div class="shot-media"><a class="ref" href="https://www.pinterest.com/pin/447826756778120595/" target="_blank" rel="noopener"><img src="refs/f2a3b-2.jpg" alt="ريفرنس لقطة 6" loading="lazy"></a><span class="shot-n">06</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:13–0:16</span><span class="frame">Match Cut على باب العربية · Wide</span></div>
+    <p class="action">الباب يتفتح والشمس تضرب، يمشي في الشارع بالجاكيت. في الخلفية واحد شايل الجاكيت على إيده وبيتهوّى.</p>
+    <p class="sound"><span>صوت</span>زحمة الشارع</p>
+    <p class="vo"><span>VO</span><q dir="ltr">From the cold of the car to the heat of the street.</q></p><p class="hud" dir="ltr">STREET · 37°C</p>
+  </div>
+</article><article class="shot">
+  <div class="shot-media"><a class="ref" href="https://www.pinterest.com/pin/201325045839513727/" target="_blank" rel="noopener"><img src="refs/f3a3-1.jpg" alt="ريفرنس لقطة 7" loading="lazy"></a><span class="shot-n">07</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:16–0:19</span><span class="frame">Match Cut على باب زجاج الشركة · Medium</span></div>
+    <p class="action">يدخل اللوبي البارد على طول لاجتماع، ويشرح وهو واقف بثقة.</p>
+    <p class="sound"><span>صوت</span>الباب يقفل، هدوء</p>
+    <p class="vo"><span>VO</span><q dir="ltr">From the meeting room…</q></p><p class="hud" dir="ltr">OFFICE · 21°C</p>
+  </div>
+</article><article class="shot">
+  <div class="shot-media"><a class="ref" href="https://www.pinterest.com/pin/555420566567808520/" target="_blank" rel="noopener"><img src="refs/f2a3c-10.jpg" alt="ريفرنس لقطة 8" loading="lazy"></a><span class="shot-n">08</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:19–0:23</span><span class="frame">Match Cut على باب المصنع · Wide ثم Medium</span></div>
+    <p class="action">لابس خوذة وفيست أمان فوق البدلة، طالع سلم معدن ومعاه مهندس. المهندس بيمسح عرقه، وهو بيشاور على الماكينة.</p>
+    <p class="sound"><span>صوت</span>ماكينات</p>
+    <p class="vo"><span>VO</span><q dir="ltr">…to a long day on site.</q></p><p class="hud" dir="ltr">SITE · 32°C</p>
+  </div>
+</article><article class="shot">
+  <div class="shot-media"><a class="ref" href="https://www.pinterest.com/pin/64176363434432902/" target="_blank" rel="noopener"><img src="refs/f2a4-10.jpg" alt="ريفرنس لقطة 9" loading="lazy"></a><span class="shot-n">09</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:23–0:26</span><span class="frame">مونتاج سريع · CU</span></div>
+    <p class="action">ثلاث حركات: إيده تمتد لسلام، يركب العربية، يقعد ويقوم. القماش بيتحرك معاه.</p>
+    <p class="sound"><span>صوت</span>إيقاع الموسيقى يعلى</p>
+    <p class="tov" dir="ltr">ONE DAY. FOUR CLIMATES.</p>
+  </div>
+</article></div>
+</section><section class="chapter" id="adapt-c3">
+  <header class="ch-head">
+    <div class="ch-title"><span class="ch-i" dir="ltr">02.4</span><h3 dir="ltr">The Fabric</h3></div>
+    <div class="ch-tags"><span class="tc" dir="ltr">0:26–0:31</span><span class="chip mix">AI + ماكرو حقيقي</span>
+    <span class="grade" title="الجريد اللوني"><i style="background:#4c5560"></i><i style="background:#15191e"></i>Backlight</span></div>
+  </header>
+  
+  <div class="shots"><article class="shot">
+  <div class="shot-media"><a class="ref" href="https://www.pinterest.com/pin/126523070779514654/" target="_blank" rel="noopener"><img src="refs/f2a4-7.jpg" alt="ريفرنس لقطة 10" loading="lazy"></a><span class="shot-n">10</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:26–0:29</span><span class="frame">Macro · Backlight</span></div>
+    <p class="action">نور وهوا بيعدوا من بين خيوط النسيج، وثنية في القماش بترجع لمكانها.</p>
+    <p class="sound"><span>صوت</span>نفَس خفيف</p>
+    <p class="vo"><span>VO</span><q dir="ltr">Natural wool breathes, manages moisture, and helps the suit keep its shape.</q></p>
+  </div>
+</article><article class="shot">
+  <div class="shot-media"><a class="ref" href="https://www.pinterest.com/pin/531354456060256692/" target="_blank" rel="noopener"><img src="refs/f2a4-2.jpg" alt="ريفرنس لقطة 11" loading="lazy"></a><span class="shot-n">11</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:29–0:31</span><span class="frame">Medium</span></div>
+    <p class="action">آخر اليوم والبدلة لسه مظبوطة، يقفل الزرار وهو ماشي.</p>
+    <p class="sound"><span>صوت</span>خطوات</p>
+    
+  </div>
+</article></div>
+</section><section class="chapter" id="adapt-c4">
+  <header class="ch-head">
+    <div class="ch-title"><span class="ch-i" dir="ltr">02.5</span><h3 dir="ltr">The Payoff</h3></div>
+    <div class="ch-tags"><span class="tc" dir="ltr">0:31–0:40</span><span class="chip real">تصوير حقيقي</span>
+    <span class="grade" title="الجريد اللوني"><i style="background:#e39a4f"></i><i style="background:#2a1f1a"></i>Sunset</span></div>
+  </header>
+  <div class="moods"><span class="moods-l">مود إضافي</span><a class="mood" href="https://www.pinterest.com/pin/382102349661837256/" target="_blank" rel="noopener"><img src="refs/f2a5-4.jpg" alt="ريفرنس مود" loading="lazy"></a></div>
+  <div class="shots"><article class="shot">
+  <div class="shot-media"><a class="ref" href="https://www.pinterest.com/pin/191614159140455750/" target="_blank" rel="noopener"><img src="refs/f2a5-9.jpg" alt="ريفرنس لقطة 12" loading="lazy"></a><span class="shot-n">12</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:31–0:35</span><span class="frame">Wide · Sunset</span></div>
+    <p class="action">يرجع للعربية، يظهر آخر رقم على الـ HUD وبعدين الـ HUD يختفي.</p>
+    <p class="sound"><span>صوت</span>موسيقى تهدى</p>
+    <p class="vo"><span>VO</span><q dir="ltr">So all you focus on is your day.</q></p>
+  </div>
+</article><article class="shot">
+  <div class="shot-media"><div class="endcard"><span class="ec-k">JAKAMEN × VBC</span><span class="ec-t">FOCUS ON WHAT MATTERS.</span><span class="ec-c">DISCOVER THE SUIT</span></div><span class="shot-n">13</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:35–0:40</span><span class="frame">Hero Shot ثم End Card</span></div>
+    <p class="action">البدلة كاملة، ثم شعارا جاكامين وVBC.</p>
+    
+    <p class="vo"><span>VO</span><q dir="ltr">Jakamen. With Vitale Barberis Canonico.</q></p>
+  </div>
+</article></div>
+</section>
+  <aside class="notes"><h4>ملاحظات التنفيذ</h4><ul><li><b>الـ HUD يقيس المكان وبس</b><span>ممنوع يظهر أي رقم لحرارة الجسم. تصميم مينيمال بالـ Navy والـ Gold: اسم المكان والدرجة، ومفيش غيرهم.</span></li><li><b>Match Cuts على الأبواب</b><span>اتجاه مشي ثابت من الشمال لليمين في كل اللوكيشنز، ونفس سرعة الخطوة، ونفس حجم الكادر لحظة القطع.</span></li><li><b>مشهد الشارع الضهر</b><span>علشان الشمس تبقى حقيقية والتباين مع العربية يبان.</span></li><li><b>الخوذة والفيست</b><span>بيخلوا مشهد المصنع واقعي، وبيوضحوا إن البدلة شغالة في مكان صعب مش بس في الاجتماعات.</span></li><li><b>الادعاءات</b><span>Breathes وmanages moisture خصائص عامة للصوف. كلمة helps مهمة في keep its shape، ومفيش أي ادعاء إن القماش ضد التجعد.</span></li><li><b>الكومبارس</b><span>التباين معاهم خفيف وطبيعي: واحد بيتهوّى، واحد شايل جاكيته، من غير مبالغة كوميدية.</span></li></ul></aside>
+</section><section class="film" id="seat">
+  <header class="film-head">
+    <div class="fh-num" dir="ltr">03</div>
+    <div class="fh-main">
+      <p class="eyebrow" dir="ltr">35 SEC · 13 SHOTS · 4 CHAPTERS</p>
+      <h2 dir="ltr">THE SEAT</h2>
+      <p class="log">كرسي واحد على رأس الطاولة فاضي، والكل مستني. التفاصيل بتسبق الوش، والاحترام بيوصل من الهدوء مش من الاستعراض.</p>
+      <dl class="fh-facts"><div><dt>الدور</dt><dd>رفع القيمة المدركة</dd></div><div><dt>الأداة البصرية</dt><dd>الوش متخبي لحد لقطة 8. البدلة هي اللي بتقدمه، وحركة الكُم بتتكرر كقافية بصرية.</dd></div></dl>
+    </div>
+  </header>
+  <div class="timeline" aria-label="تقسيم الفيلم بالثواني"><div class="tl-bar"><a href="#seat-c0" class="seg real" style="flex:9" title="The Empty Seat"><span>The Empty Seat</span><em dir="ltr">9s</em></a><a href="#seat-c1" class="seg real" style="flex:8" title="The Details"><span>The Details</span><em dir="ltr">8s</em></a><a href="#seat-c2" class="seg real" style="flex:10" title="The Entrance"><span>The Entrance</span><em dir="ltr">10s</em></a><a href="#seat-c3" class="seg real" style="flex:8" title="The Statement"><span>The Statement</span><em dir="ltr">8s</em></a></div><div class="tl-scale" dir="ltr"><span>0s</span><span>35s</span></div></div>
+  <section class="chapter" id="seat-c0">
+  <header class="ch-head">
+    <div class="ch-title"><span class="ch-i" dir="ltr">03.1</span><h3 dir="ltr">The Empty Seat</h3></div>
+    <div class="ch-tags"><span class="tc" dir="ltr">0:00–0:09</span><span class="chip real">تصوير حقيقي</span>
+    <span class="grade" title="الجريد اللوني"><i style="background:#3b4654"></i><i style="background:#0d1117"></i>Low Key</span></div>
+  </header>
+  <div class="moods"><span class="moods-l">مود إضافي</span><a class="mood" href="https://www.pinterest.com/pin/170503535888743241/" target="_blank" rel="noopener"><img src="refs/f3a1-5.jpg" alt="ريفرنس مود" loading="lazy"></a></div>
+  <div class="shots"><article class="shot">
+  <div class="shot-media"><a class="ref" href="https://www.pinterest.com/pin/379639443612436845/" target="_blank" rel="noopener"><img src="refs/f3a1-0.jpg" alt="ريفرنس لقطة 1" loading="lazy"></a><span class="shot-n">01</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:00–0:03</span><span class="frame">Wide · Symmetric · Dolly بطيء على طول الطاولة</span></div>
+    <p class="action">قاعة اجتماعات و8 أشخاص قاعدين، كل الكراسي مليانة ما عدا الكرسي اللي على رأس الطاولة.</p>
+    <p class="sound"><span>صوت</span>همهمة، ورق بيتقلب</p>
+    <p class="vo"><span>VO</span><q dir="ltr">In every meeting, there is one seat.</q></p>
+  </div>
+</article><article class="shot">
+  <div class="shot-media"><a class="ref" href="https://www.pinterest.com/pin/211035932522609197/" target="_blank" rel="noopener"><img src="refs/f3a1-3.jpg" alt="ريفرنس لقطة 2" loading="lazy"></a><span class="shot-n">02</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:03–0:06</span><span class="frame">CU · Side Light</span></div>
+    <p class="action">الكرسي الفاضي، وقدامه فولدر جلد مقفول وكوباية مية محدش لمسها.</p>
+    <p class="sound"><span>صوت</span>تكة ساعة</p>
+    <p class="vo"><span>VO</span><q dir="ltr">Not the first one taken. The one reserved.</q></p>
+  </div>
+</article><article class="shot">
+  <div class="shot-media"><a class="ref" href="https://www.pinterest.com/pin/111534528268744792/" target="_blank" rel="noopener"><img src="refs/f3a3-4.jpg" alt="ريفرنس لقطة 3" loading="lazy"></a><span class="shot-n">03</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:06–0:09</span><span class="frame">Medium · Rack Focus</span></div>
+    <p class="action">واحد يبص في ساعته، وواحد تاني يبص ناحية الباب.</p>
+    <p class="sound"><span>صوت</span>الهمهمة تقل لحد الصمت</p>
+    
+  </div>
+</article></div>
+</section><section class="chapter" id="seat-c1">
+  <header class="ch-head">
+    <div class="ch-title"><span class="ch-i" dir="ltr">03.2</span><h3 dir="ltr">The Details</h3></div>
+    <div class="ch-tags"><span class="tc" dir="ltr">0:09–0:17</span><span class="chip real">تصوير حقيقي</span>
+    <span class="grade" title="الجريد اللوني"><i style="background:#8a6a45"></i><i style="background:#141110"></i>Side Light دافي</span></div>
+  </header>
+  
+  <div class="shots"><article class="shot">
+  <div class="shot-media"><a class="ref" href="https://www.pinterest.com/pin/29836416278210092/" target="_blank" rel="noopener"><img src="refs/f3a2a-8.jpg" alt="ريفرنس لقطة 4" loading="lazy"></a><span class="shot-n">04</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:09–0:11</span><span class="frame">Macro</span></div>
+    <p class="action">الكُم وتحته سنتي من كُم القميص، وساعة.</p>
+    
+    <p class="vo"><span>VO</span><q dir="ltr">Distinction is rarely loud.</q></p>
+  </div>
+</article><article class="shot">
+  <div class="shot-media"><a class="ref" href="https://www.pinterest.com/pin/665055070023070139/" target="_blank" rel="noopener"><img src="refs/f3a2a-4.jpg" alt="ريفرنس لقطة 5" loading="lazy"></a><span class="shot-n">05</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:11–0:13</span><span class="frame">CU · Side Light</span></div>
+    <p class="action">ثنية الياقة وملمس النسيج.</p>
+    <p class="sound"><span>صوت</span>قماش بيتحرك</p>
+    
+  </div>
+</article><article class="shot">
+  <div class="shot-media"><a class="ref" href="https://www.pinterest.com/pin/304344887339779946/" target="_blank" rel="noopener"><img src="refs/f3a2b-2.jpg" alt="ريفرنس لقطة 6" loading="lazy"></a><span class="shot-n">06</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:13–0:15</span><span class="frame">CU · انعكاس في مراية الأسانسير</span></div>
+    <p class="action">بيقفل زرار الجاكيت.</p>
+    
+    <p class="vo"><span>VO</span><q dir="ltr">It’s in what you choose, when no one is looking.</q></p>
+  </div>
+</article><article class="shot">
+  <div class="shot-media"><a class="ref" href="https://www.pinterest.com/pin/447826756778120595/" target="_blank" rel="noopener"><img src="refs/f2a3b-2.jpg" alt="ريفرنس لقطة 7" loading="lazy"></a><span class="shot-n">07</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:15–0:17</span><span class="frame">Low Angle · Tracking على الرجلين</span></div>
+    <p class="action">الأسانسير يتفتح وخطوات ثابتة في الممر.</p>
+    <p class="sound"><span>صوت</span>إيقاع الخطوات</p>
+    <p class="tov" dir="ltr">THE DETAILS SPEAK FIRST.</p>
+  </div>
+</article></div>
+</section><section class="chapter" id="seat-c2">
+  <header class="ch-head">
+    <div class="ch-title"><span class="ch-i" dir="ltr">03.3</span><h3 dir="ltr">The Entrance</h3></div>
+    <div class="ch-tags"><span class="tc" dir="ltr">0:17–0:27</span><span class="chip real">تصوير حقيقي</span>
+    <span class="grade" title="الجريد اللوني"><i style="background:#6f7d8c"></i><i style="background:#12171d"></i>هادي ومتوازن</span></div>
+  </header>
+  
+  <div class="shots"><article class="shot">
+  <div class="shot-media"><a class="ref" href="https://www.pinterest.com/pin/219269075602635465/" target="_blank" rel="noopener"><img src="refs/f3a3-5.jpg" alt="ريفرنس لقطة 8" loading="lazy"></a><span class="shot-n">08</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:17–0:20</span><span class="frame">Wide من جوه القاعة</span></div>
+    <p class="action">الباب يتفتح ويدخل بخطوة هادية. ده أول مرة وشه يظهر.</p>
+    <p class="sound"><span>صوت</span>صمت تام</p>
+    
+  </div>
+</article><article class="shot">
+  <div class="shot-media"><a class="ref" href="https://www.pinterest.com/pin/67413325662864080/" target="_blank" rel="noopener"><img src="refs/f3a3-9.jpg" alt="ريفرنس لقطة 9" loading="lazy"></a><span class="shot-n">09</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:20–0:22</span><span class="frame">Medium · Reactions</span></div>
+    <p class="action">إيماءات خفيفة من الحاضرين، وواحد يزق الفولدر ناحيته. هو يرد بإيماءة.</p>
+    
+    
+  </div>
+</article><article class="shot">
+  <div class="shot-media"><a class="ref" href="https://www.pinterest.com/pin/314407617710549319/" target="_blank" rel="noopener"><img src="refs/f1a7-6.jpg" alt="ريفرنس لقطة 10" loading="lazy"></a><span class="shot-n">10</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:22–0:25</span><span class="frame">CU</span></div>
+    <p class="action">يسحب الكرسي ويقعد ويظبط الكُم، نفس حركة لقطة 4.</p>
+    <p class="sound"><span>صوت</span>صوت الكرسي</p>
+    <p class="vo"><span>VO</span><q dir="ltr">Not made to be the best seller.</q></p>
+  </div>
+</article><article class="shot">
+  <div class="shot-media"><a class="ref" href="https://www.pinterest.com/pin/9992430418426328/" target="_blank" rel="noopener"><img src="refs/f1a7-3.jpg" alt="ريفرنس لقطة 11" loading="lazy"></a><span class="shot-n">11</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:25–0:27</span><span class="frame">Medium · Low Angle خفيف</span></div>
+    <p class="action">يفتح الفولدر ويرفع عينه، والاجتماع يبدأ.</p>
+    
+    <p class="vo"><span>VO</span><q dir="ltr">Made for the one who sets the standard.</q></p><p class="tov" dir="ltr">NOT FOR EVERYONE. BY DESIGN.</p>
+  </div>
+</article></div>
+</section><section class="chapter" id="seat-c3">
+  <header class="ch-head">
+    <div class="ch-title"><span class="ch-i" dir="ltr">03.4</span><h3 dir="ltr">The Statement</h3></div>
+    <div class="ch-tags"><span class="tc" dir="ltr">0:27–0:35</span><span class="chip real">تصوير حقيقي</span>
+    <span class="grade" title="الجريد اللوني"><i style="background:#182638"></i><i style="background:#0b1119"></i>Navy</span></div>
+  </header>
+  
+  <div class="shots"><article class="shot">
+  <div class="shot-media"><a class="ref" href="https://www.pinterest.com/pin/23010648094620802/" target="_blank" rel="noopener"><img src="refs/f3a1-9.jpg" alt="ريفرنس لقطة 12" loading="lazy"></a><span class="shot-n">12</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:27–0:31</span><span class="frame">Top Shot · Symmetric</span></div>
+    <p class="action">الطاولة من فوق وكل الأنظار رايحة لرأس الطاولة.</p>
+    <p class="sound"><span>صوت</span>لحظة صمت</p>
+    
+  </div>
+</article><article class="shot">
+  <div class="shot-media"><div class="endcard"><span class="ec-k">JAKAMEN × VBC</span><span class="ec-t">DISTINCT BY CHOICE.</span><span class="ec-c">DISCOVER THE SUIT</span></div><span class="shot-n">13</span></div>
+  <div class="shot-body">
+    <div class="shot-meta"><span class="tc" dir="ltr">0:31–0:35</span><span class="frame">End Card على خلفية Navy</span></div>
+    <p class="action">شعارا جاكامين وVBC.</p>
+    
+    <p class="vo"><span>VO</span><q dir="ltr">Jakamen. With Vitale Barberis Canonico.</q></p>
+  </div>
+</article></div>
+</section>
+  <aside class="notes"><h4>ملاحظات التنفيذ</h4><ul><li><b>ضد التعالي</b><span>مفيش حد يقف، ومفيش حد يخدمه. الاحترام متبادل، وهو بيرد الإيماءة. كده هو صاحب المكانة مش المتعالي، ودي نقطة مهمة جدًا للسوق السعودي.</span></li><li><b>الكرسي</b><span>مختلف بشكل بسيط: ضهر أعلى وجلد، لكن مش كرسي عرش.</span></li><li><b>قافية بصرية</b><span>حركة الكُم في لقطة 4 بترجع في لقطة 10. أول مرة تفصيلة، وتاني مرة بصمة.</span></li><li><b>الإيقاع</b><span>أبطأ فيلم في التلاتة. Low Key وإضاءة جانبية وفراغ في الكادر، عكس طاقة فيلم Adapt.</span></li><li><b>Not made to be the best seller</b><span>مكتوبة كنية التصميم مش ادعاء عن أرقام المبيعات. نتجنب أي كلام عن «إصدار محدود» إلا لو صحيح.</span></li><li><b>اللوكيشن</b><span>قاعة اجتماعات في فندق أو Coworking فيها طاولة طويلة، في نفس يوم تصوير فيلم Adapt لو الجدول يسمح.</span></li></ul></aside>
+</section>
+<section class="claims" id="claims">
+  <h2>الادعاءات قبل التسليم</h2>
+  <ol>
+    <li><b>1663 وBiella</b><span>صحيحة ومعروفة عن VBC.</span></li>
+    <li><b>تصنيع البدلة في تركيا</b><span>مؤكدة من فريق المشروع.</span></li>
+    <li><b>أستراليا</b><span>محتاجة تأكيد من VBC إن صوف القماش ده بالذات منها.</span></li>
+    <li><b>خصائص الصوف</b><span>عامة: يتنفس، يتعامل مع الرطوبة، helps keep its shape. مفيش ادعاء ضد التجعد ولا تحكم في حرارة الجسم.</span></li>
+    <li><b>الندرة</b><span>«Not made to be the best seller» نية تصميم. مفيش «إصدار محدود» إلا لو صحيح.</span></li>
+  </ol>
+</section>
+<footer class="foot"><p dir="ltr">JAKAMEN × VITALE BARBERIS CANONICO</p><p>الصور ريفرنس داخلي للمود والكادر من Pinterest، مش صور المنتج ولا للنشر. اضغط على أي صورة تفتح البن الأصلي.</p></footer>
+</div>
+</body>
+</html>
